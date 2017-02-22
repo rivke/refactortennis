@@ -33,25 +33,17 @@ public class TennisGame2 implements TennisGame
         
         literal = advantagePlayer2(literal);
         
-        literal = wonPlayer1(literal);
-        literal = wonPlayer2(literal);
+       
+        literal = playerWins(literal);
         return literal;
     }
+    
 
-	private String wonPlayer2(String score) {
+	private String playerWins(String score) {
 		if (isGamePoint(player1Points, player2Points) && differenceOfTwoPoints(player2Points, player1Points))
         {
             score = "Win for player2";
         }
-		return score;
-	}
-
-	private boolean isGamePoint(int player1Points, int player2Points) {
-		return player2Points>=4 && player1Points>=0;
-	}
-
-
-	private String wonPlayer1(String score) {
 		if (isGamePoint(player2Points, player1Points) && differenceOfTwoPoints(player1Points, player2Points))
         {
             score = "Win for player1";
@@ -59,6 +51,15 @@ public class TennisGame2 implements TennisGame
 		return score;
 	}
 
+	
+
+
+	
+
+	private boolean isGamePoint(int player1Points, int player2Points) {
+		return player2Points>=4 && player1Points>=0;
+	}
+	
 	private boolean differenceOfTwoPoints(int player1Points, int player2Points) {
 		return (player1Points-player2Points)>=2;
 	}
