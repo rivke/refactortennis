@@ -113,20 +113,28 @@ public class TennisGame2 implements TennisGame
 	}
 
 	private String player2IsWinnig(String score) {
-		if (player2Points > 0 && player1Points==0)
+		String P2res="";
+		if (player2Points > 0 && player1Points==0)//se envia player2
         {
-            if (player2Points==1)
-                P2res = "Fifteen";
-            if (player2Points==2)
-                P2res = "Thirty";
-            if (player2Points==3)
-                P2res = "Forty";
+            P2res=getLiteral(player2Points);
             
             P1res = "Love";
             score = P1res + "-" + P2res;
         }
 		return score;
 	}
+
+	private String getLiteral(int playerPoints) {
+		if (playerPoints==1)
+		    P2res = "Fifteen";
+		if (playerPoints==2)
+		    P2res = "Thirty";
+		if (playerPoints==3)
+		    P2res = "Forty";
+		
+		return P2res;
+	}
+	
 
 	private String player1IsWinning(String score) {
 		if (player1Points > 0 && player2Points==0)
