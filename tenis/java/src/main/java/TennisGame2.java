@@ -20,18 +20,8 @@ public class TennisGame2 implements TennisGame
         
         score = isDeuce(score);
         
-        if (player1Points > 0 && P2point==0)
-        {
-            if (player1Points==1)
-                P1res = "Fifteen";
-            if (player1Points==2)
-                P1res = "Thirty";
-            if (player1Points==3)
-                P1res = "Forty";
-            
-            P2res = "Love";
-            score = P1res + "-" + P2res;
-        }
+        score = player1IsWinning(score);
+        
         if (P2point > 0 && player1Points==0)
         {
             if (P2point==1)
@@ -90,6 +80,22 @@ public class TennisGame2 implements TennisGame
         }
         return score;
     }
+
+	private String player1IsWinning(String score) {
+		if (player1Points > 0 && P2point==0)
+        {
+            if (player1Points==1)
+                P1res = "Fifteen";
+            if (player1Points==2)
+                P1res = "Thirty";
+            if (player1Points==3)
+                P1res = "Forty";
+            
+            P2res = "Love";
+            score = P1res + "-" + P2res;
+        }
+		return score;
+	}
 
 	private String isDeuce(String score) {
 		if (player1Points==P2point && player1Points>=3)
