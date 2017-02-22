@@ -20,7 +20,7 @@ public class TennisGame2 implements TennisGame
         
         literal = isDeuce(literal);
         
-        literal = player1IsWinning(literal);
+        //literal = player1IsWinning(literal);
         
         
         literal = player2IsWinnig(literal);
@@ -111,19 +111,33 @@ public class TennisGame2 implements TennisGame
         }
 		return score;
 	}
-
+	
 	private String player2IsWinnig(String score) {
-		String P2res="";
-		if (player2Points > 0 && player1Points==0)//se envia player2
+		
+		if (isPlayerWinningToNothing(player2Points, player1Points))
         {
             P2res=getLiteral(player2Points);
             
             P1res = "Love";
             score = P1res + "-" + P2res;
         }
+		if (isPlayerWinningToNothing(player1Points,player2Points))
+        {
+			P1res=getLiteral(player1Points);
+            
+            P2res = "Love";
+            score = P1res + "-" + P2res;
+        }
 		return score;
 	}
 
+	private boolean isPlayerWinningToNothing(int player2Points, int player1Points) {
+		return player2Points > 0 && player1Points==0;
+	}
+
+	
+
+	
 	private String getLiteral(int playerPoints) {
 		if (playerPoints==1)
 		    P2res = "Fifteen";
@@ -136,21 +150,7 @@ public class TennisGame2 implements TennisGame
 	}
 	
 
-	private String player1IsWinning(String score) {
-		if (player1Points > 0 && player2Points==0)
-        {
-            if (player1Points==1)
-                P1res = "Fifteen";
-            if (player1Points==2)
-                P1res = "Thirty";
-            if (player1Points==3)
-                P1res = "Forty";
-            
-            P2res = "Love";
-            score = P1res + "-" + P2res;
-        }
-		return score;
-	}
+	
 
 	private String isDeuce(String score) {
 		if (player1Points==player2Points && player1Points>=3)
