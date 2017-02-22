@@ -39,19 +39,27 @@ public class TennisGame2 implements TennisGame
     }
 
 	private String wonPlayer2(String score) {
-		if (player2Points>=4 && player1Points>=0 && (player2Points-player1Points)>=2)
+		if (player2Points>=4 && player1Points>=0 && defferenceOfTwoPoints2(player2Points, player1Points))
         {
             score = "Win for player2";
         }
 		return score;
 	}
 
+	private boolean defferenceOfTwoPoints2(int player2Points, int player1Points) {
+		return (player2Points-player1Points)>=2;
+	}
+
 	private String wonPlayer1(String score) {
-		if (player1Points>=4 && player2Points>=0 && (player1Points-player2Points)>=2)
+		if (player1Points>=4 && player2Points>=0 && differenceOfTwoPoints1(player1Points, player2Points))
         {
             score = "Win for player1";
         }
 		return score;
+	}
+
+	private boolean differenceOfTwoPoints1(int player1Points, int player2Points) {
+		return (player1Points-player2Points)>=2;
 	}
 
 	private String advantagePlayer2(String score) {
