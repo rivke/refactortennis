@@ -23,7 +23,7 @@ public class TennisGame2 implements TennisGame
         //literal = player1IsWinning(literal);
         
         
-        literal = player2IsWinnig(literal);
+        literal = playerIsWinning(literal);
         
         literal = player1Wins(literal);
         
@@ -112,23 +112,23 @@ public class TennisGame2 implements TennisGame
 		return score;
 	}
 	
-	private String player2IsWinnig(String score) {
+	private String playerIsWinning(String literalScore) {
 		
 		if (isPlayerWinningToNothing(player2Points, player1Points))
         {
-            P2res=getLiteral(player2Points);
+           
             
             P1res = "Love";
-            score = P1res + "-" + P2res;
+            literalScore = P1res + "-" + getLiteral(player2Points);
         }
 		if (isPlayerWinningToNothing(player1Points,player2Points))
         {
 			P1res=getLiteral(player1Points);
             
             P2res = "Love";
-            score = P1res + "-" + P2res;
+            literalScore = P1res + "-" + P2res;
         }
-		return score;
+		return literalScore;
 	}
 
 	private boolean isPlayerWinningToNothing(int player2Points, int player1Points) {
