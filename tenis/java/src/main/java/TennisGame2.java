@@ -39,7 +39,7 @@ public class TennisGame2 implements TennisGame
     }
 
 	private String wonPlayer2(String score) {
-		if (player2Points>=4 && player1Points>=0 && defferenceOfTwoPoints2(player2Points, player1Points))
+		if (player2Points>=4 && player1Points>=0 && differenceOfTwoPoints1(player2Points, player1Points))
         {
             score = "Win for player2";
         }
