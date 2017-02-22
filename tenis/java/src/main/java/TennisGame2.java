@@ -118,14 +118,14 @@ public class TennisGame2 implements TennisGame
         {
            
             
-            P1res = "Love";
+            P1res = getLiteral(player1Points);
             literalScore = P1res + "-" + getLiteral(player2Points);
         }
 		if (isPlayerWinningToNothing(player1Points,player2Points))
         {
 			P1res=getLiteral(player1Points);
             
-            P2res = "Love";
+            P2res = getLiteral(player2Points);
             literalScore = P1res + "-" + P2res;
         }
 		return literalScore;
@@ -139,6 +139,8 @@ public class TennisGame2 implements TennisGame
 
 	
 	private String getLiteral(int playerPoints) {
+		if (playerPoints==0)
+            P2res = "Love";
 		if (playerPoints==1)
 		    P2res = "Fifteen";
 		if (playerPoints==2)
