@@ -2,7 +2,7 @@
 public class TennisGame2 implements TennisGame
 {
     public int player1Points = 0;
-    public int P2point = 0;
+    public int player2Points = 0;
     
     public String P1res = "";
     public String P2res = "";
@@ -15,43 +15,67 @@ public class TennisGame2 implements TennisGame
     }
 
     public String convertScoreToLiteral(){
-        String score = "";
-        score = isTiedNotDeuce(score);
+        String literal = "";
+        literal = isTiedNotDeuce(literal);
         
-        score = isDeuce(score);
+        literal = isDeuce(literal);
         
-        score = player1IsWinning(score);
+        literal = player1IsWinning(literal);
         
-        if (P2point > 0 && player1Points==0)
+        
+        literal = player2IsWinnig(literal);
+        
+        literal = player1Wins(literal);
+        
+        literal = player2Wins(literal);
+        
+        literal = advantagePlayer1(literal);
+        
+        literal = advantagePlayer2(literal);
+        
+        literal = wonPlayer1(literal);
+        literal = wonPlayer2(literal);
+        return literal;
+    }
+
+	private String wonPlayer2(String score) {
+		if (player2Points>=4 && player1Points>=0 && (player2Points-player1Points)>=2)
         {
-            if (P2point==1)
-                P2res = "Fifteen";
-            if (P2point==2)
-                P2res = "Thirty";
-            if (P2point==3)
-                P2res = "Forty";
-            
-            P1res = "Love";
-            score = P1res + "-" + P2res;
+            score = "Win for player2";
         }
-        
-        if (player1Points>P2point && player1Points < 4)
+		return score;
+	}
+
+	private String wonPlayer1(String score) {
+		if (player1Points>=4 && player2Points>=0 && (player1Points-player2Points)>=2)
         {
-            if (player1Points==2)
-                P1res="Thirty";
-            if (player1Points==3)
-                P1res="Forty";
-            if (P2point==1)
-                P2res="Fifteen";
-            if (P2point==2)
-                P2res="Thirty";
-            score = P1res + "-" + P2res;
+            score = "Win for player1";
         }
-        if (P2point>player1Points && P2point < 4)
+		return score;
+	}
+
+	private String advantagePlayer2(String score) {
+		if (player2Points > player1Points && player1Points >= 3)
         {
-            if (P2point==2)
+            score = "Advantage player2";
+        }
+		return score;
+	}
+
+	private String advantagePlayer1(String score) {
+		if (player1Points > player2Points && player2Points >= 3)
+        {
+            score = "Advantage player1";
+        }
+		return score;
+	}
+
+	private String player2Wins(String score) {
+		if (player2Points>player1Points && player2Points < 4)
+        {
+            if (player2Points==2)
                 P2res="Thirty";
-            if (P2point==3)
+            if (player2Points==3)
                 P2res="Forty";
             if (player1Points==1)
                 P1res="Fifteen";
@@ -59,30 +83,43 @@ public class TennisGame2 implements TennisGame
                 P1res="Thirty";
             score = P1res + "-" + P2res;
         }
-        
-        if (player1Points > P2point && P2point >= 3)
+		return score;
+	}
+
+	private String player1Wins(String score) {
+		if (player1Points>player2Points && player1Points < 4)
         {
-            score = "Advantage player1";
+            if (player1Points==2)
+                P1res="Thirty";
+            if (player1Points==3)
+                P1res="Forty";
+            if (player2Points==1)
+                P2res="Fifteen";
+            if (player2Points==2)
+                P2res="Thirty";
+            score = P1res + "-" + P2res;
         }
-        
-        if (P2point > player1Points && player1Points >= 3)
+		return score;
+	}
+
+	private String player2IsWinnig(String score) {
+		if (player2Points > 0 && player1Points==0)
         {
-            score = "Advantage player2";
+            if (player2Points==1)
+                P2res = "Fifteen";
+            if (player2Points==2)
+                P2res = "Thirty";
+            if (player2Points==3)
+                P2res = "Forty";
+            
+            P1res = "Love";
+            score = P1res + "-" + P2res;
         }
-        
-        if (player1Points>=4 && P2point>=0 && (player1Points-P2point)>=2)
-        {
-            score = "Win for player1";
-        }
-        if (P2point>=4 && player1Points>=0 && (P2point-player1Points)>=2)
-        {
-            score = "Win for player2";
-        }
-        return score;
-    }
+		return score;
+	}
 
 	private String player1IsWinning(String score) {
-		if (player1Points > 0 && P2point==0)
+		if (player1Points > 0 && player2Points==0)
         {
             if (player1Points==1)
                 P1res = "Fifteen";
@@ -98,13 +135,13 @@ public class TennisGame2 implements TennisGame
 	}
 
 	private String isDeuce(String score) {
-		if (player1Points==P2point && player1Points>=3)
+		if (player1Points==player2Points && player1Points>=3)
             score = "Deuce";
 		return score;
 	}
 
 	private String isTiedNotDeuce(String score) {
-		if (player1Points == P2point && player1Points < 4)
+		if (player1Points == player2Points && player1Points < 4)
         {
             if (player1Points==0)
                 score = "Love";
@@ -140,7 +177,7 @@ public class TennisGame2 implements TennisGame
     }
     
     public void P2Score(){
-        P2point++;
+        player2Points++;
     }
 
     public void wonPoint(String player) {
