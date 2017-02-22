@@ -18,8 +18,7 @@ public class TennisGame2 implements TennisGame
         String score = "";
         score = isTiedNotDeuce(score);
         
-        if (player1Points==P2point && player1Points>=3)
-            score = "Deuce";
+        score = isDeuce(score);
         
         if (player1Points > 0 && P2point==0)
         {
@@ -91,6 +90,12 @@ public class TennisGame2 implements TennisGame
         }
         return score;
     }
+
+	private String isDeuce(String score) {
+		if (player1Points==P2point && player1Points>=3)
+            score = "Deuce";
+		return score;
+	}
 
 	private String isTiedNotDeuce(String score) {
 		if (player1Points == P2point && player1Points < 4)
